@@ -1,48 +1,38 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
-export function Tabs({
-  defaultValue,
-  children,
-  className
-}: {
+type TabsProps = {
   defaultValue: string;
   children: ReactNode;
   className?: string;
-}) {
+};
+
+export function Tabs({ children, className = "" }: TabsProps) {
   return <div className={className}>{children}</div>;
 }
 
 export function TabsList({ children }: { children: ReactNode }) {
-  return <div className="flex gap-2 mb-4">{children}</div>;
+  return <div className="flex space-x-2 mb-4">{children}</div>;
 }
 
-export function TabsTrigger({
-  value,
-  onClick,
-  children
-}: {
+type TabsTriggerProps = {
   value: string;
   onClick: () => void;
   children: ReactNode;
-}) {
+};
+
+export function TabsTrigger({ onClick, children }: TabsTriggerProps) {
   return (
     <button
-      className="px-4 py-2 bg-gray-100 rounded hover:bg-blue-100"
       onClick={onClick}
+      className="px-4 py-2 bg-gray-200 rounded-2xl hover:bg-gray-300"
     >
       {children}
     </button>
   );
 }
 
-export function TabsContent({
-  value,
-  children
-}: {
-  value: string;
-  children: ReactNode;
-}) {
+export function TabsContent({ children }: { children: ReactNode }) {
   return <div>{children}</div>;
 }

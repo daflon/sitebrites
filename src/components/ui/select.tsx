@@ -1,26 +1,34 @@
 "use client";
 
-import { SelectHTMLAttributes } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
-type SelectProps = SelectHTMLAttributes<HTMLSelectElement>;
+type SelectProps = {
+  value: string;
+  onValueChange: (value: string) => void;
+  children: ReactNode;
+};
 
-export function Select({ children, ...props }: SelectProps) {
+export function Select({ value, onValueChange, children }: SelectProps) {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    onValueChange(e.target.value);
+  };
+
   return (
     <select
-      className="border rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-      {...props}
+      value={value}
+      onChange={handleChange}
+      className="border border-gray-300 rounded-2xl px-3 py-2 w-full"
     >
       {children}
     </select>
   );
 }
 
-export function SelectItem({
-  value,
-  children
-}: {
+type SelectItemProps = {
   value: string;
-  children: React.ReactNode;
-}) {
+  children: ReactNode;
+};
+
+export function SelectItem({ value, children }: SelectItemProps) {
   return <option value={value}>{children}</option>;
 }

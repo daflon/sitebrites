@@ -1,14 +1,12 @@
-"use client";
+import { ButtonHTMLAttributes } from "react";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({ children, ...props }: ButtonProps) {
+export function Button(props: ButtonProps) {
   return (
     <button
-      className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
       {...props}
-    >
-      {children}
-    </button>
+      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-2xl"
+    />
   );
 }
