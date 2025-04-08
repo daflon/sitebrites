@@ -14,11 +14,14 @@
       --text: #2d3748;
       --card: #fff;
     }
-
-    * {
-      box-sizing: border-box;
+    [data-theme="dark"] {
+      --primary: #90cdf4;
+      --secondary: #2d3748;
+      --background: #1a202c;
+      --text: #e2e8f0;
+      --card: #2d3748;
     }
-
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--background);
@@ -26,16 +29,10 @@
       padding: 20px;
       margin: 0 auto;
       max-width: 1200px;
+      transition: background-color 0.3s, color 0.3s;
     }
-
-    h1, h2 {
-      color: var(--primary);
-    }
-
-    .tabs {
-      margin-bottom: 20px;
-    }
-
+    h1, h2 { color: var(--primary); }
+    .tabs { margin-bottom: 20px; }
     .tabs button {
       background-color: var(--primary);
       color: white;
@@ -46,18 +43,15 @@
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
     .tabs button:hover {
       background-color: #2c5282;
       transform: scale(1.05);
     }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
-
     .card {
       background-color: var(--card);
       border-radius: 10px;
@@ -65,45 +59,29 @@
       overflow: hidden;
       transition: transform 0.3s ease;
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
+    .card:hover { transform: translateY(-5px); }
     .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+      width: 100%; height: 200px; object-fit: cover;
     }
-
-    .card-content {
-      padding: 15px;
-    }
-
+    .card-content { padding: 15px; }
     .card-content h2 {
-      font-size: 1.2rem;
-      margin: 0 0 10px;
+      font-size: 1.2rem; margin: 0 0 10px;
     }
-
     .card-content p {
-      font-weight: bold;
-      color: var(--primary);
+      font-weight: bold; color: var(--primary);
     }
-
     .inputs {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 10px;
       margin-bottom: 10px;
     }
-
     input, select, button {
       padding: 10px;
       font-size: 16px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
-
     button {
       background-color: var(--primary);
       color: white;
@@ -111,11 +89,10 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-    button:hover {
-      background-color: #2c5282;
+    button:hover { background-color: #2c5282; }
+    .theme-toggle {
+      margin-bottom: 20px;
     }
-
     @media (max-width: 600px) {
       .inputs {
         grid-template-columns: 1fr;
@@ -125,6 +102,12 @@
 </head>
 <body>
   <h1><i class="fa-solid fa-building"></i> Portal Imobiliário</h1>
+
+  <div class="theme-toggle">
+    <button onclick="alternarTema()">
+      <i class="fa-solid fa-circle-half-stroke"></i> Alternar Tema
+    </button>
+  </div>
 
   <div class="tabs">
     <button onclick="filtrar('todos')"><i class="fa-solid fa-list"></i> Todos</button>
@@ -146,6 +129,16 @@
       </select>
     </div>
     <button onclick="adicionarImovel()"><i class="fa-solid fa-plus"></i> Adicionar Imóvel</button>
+  </div>
+
+  <div class="contact">
+    <h2><i class="fa-solid fa-envelope"></i> Contato</h2>
+    <div class="inputs">
+      <input type="text" placeholder="Nome">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Mensagem">
+      <button><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+    </div>
   </div>
 
   <script>
@@ -172,7 +165,6 @@
       const container = document.getElementById("lista-imoveis");
       container.innerHTML = "";
       const filtrados = imoveis.filter(imovel => filtro === "todos" || imovel.type === filtro);
-
       filtrados.forEach(imovel => {
         const card = document.createElement("div");
         card.className = "card";
@@ -209,7 +201,11 @@
       renderizarImoveis();
     }
 
-    // Inicializa
+    function alternarTema() {
+      const atual = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", atual === "dark" ? "light" : "dark");
+    }
+
     renderizarImoveis();
   </script>
 </body>
