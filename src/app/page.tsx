@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectItem } from "@/components/ui/select";
+const Button = (props) => <button className="bg-blue-600 text-white px-4 py-2 rounded" {...props} />;
+const Input = (props) => <input className="border p-2" {...props} />;
+const Select = (props) => <select className="border p-2" {...props} />;
+const SelectItem = ({ value, children }) => <option value={value}>{children}</option>;
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const mockProperties = [
