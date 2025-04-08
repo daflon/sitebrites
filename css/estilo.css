@@ -84,3 +84,36 @@ body.dark {
   background: #121212;
   color: #f0f0f0;
 }
+.site-header {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 50px;
+}
+
+.contact-info p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.site-footer {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
