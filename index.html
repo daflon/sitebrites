@@ -103,6 +103,26 @@
       color: var(--primary);
       cursor: pointer;
     }
+    .whatsapp {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .whatsapp a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      color: var(--primary);
+      text-decoration: none;
+      border: 2px solid var(--primary);
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    .whatsapp a:hover {
+      background-color: var(--primary);
+      color: white;
+    }
     @media (max-width: 600px) {
       .inputs {
         grid-template-columns: 1fr;
@@ -146,14 +166,10 @@
     <button onclick="adicionarImovel()"><i class="fa-solid fa-plus"></i> Adicionar Imóvel</button>
   </div>
 
-  <div class="contact">
-    <h2><i class="fa-solid fa-envelope"></i> Contato</h2>
-    <div class="inputs">
-      <input type="text" placeholder="Nome">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Mensagem">
-      <button><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-    </div>
+  <div class="whatsapp">
+    <a href="https://wa.me/5599999999999" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> Fale conosco pelo WhatsApp
+    </a>
   </div>
 
   <script>
