@@ -39,20 +39,6 @@
 
       <div id="lista-imoveis" class="grid"></div>
 
-      <div class="admin">
-        <h2><i class="fa-solid fa-pen-to-square"></i> Painel de Administração</h2>
-        <div class="inputs">
-          <input type="text" id="titulo" placeholder="Título do imóvel">
-          <input type="text" id="imagem" placeholder="URL da imagem">
-          <input type="text" id="preco" placeholder="Preço">
-          <select id="tipo">
-            <option value="compra">Compra</option>
-            <option value="aluguel">Aluguel</option>
-          </select>
-        </div>
-        <button onclick="adicionarImovel()"><i class="fa-solid fa-plus"></i> Adicionar Imóvel</button>
-      </div>
-
       <div class="whatsapp">
         <a href="https://wa.me/5599999999999" target="_blank">
           <img src="img/whatsapp-icon.png" alt="WhatsApp" />
@@ -62,7 +48,7 @@
     </div>
   </div>
 
-  <div id="modal-confirmacao">
+  <div id="modal-confirmacao" style="display: none;">
     <div class="modal-content">
       <p>Deseja adicionar este imóvel?</p>
       <button onclick="confirmarAdicao()">Confirmar</button>
