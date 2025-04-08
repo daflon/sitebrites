@@ -1,50 +1,53 @@
-let imoveis = [];
+// js/app.js
 
-function alternarTema() {
-  document.body.classList.toggle("dark");
-}
+const imoveis = JSON.parse(localStorage.getItem('imoveis')) || [];
 
-function filtrar(tipo) {
+function renderizarImoveis(lista = imoveis) {
   const container = document.getElementById('lista-imoveis');
+  if (!container) return;
   container.innerHTML = '';
-
-  const filtrados = tipo === 'todos' ? imoveis : imoveis.filter(imovel => imovel.tipo === tipo);
-
-  filtrados.forEach(imovel => {
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `
-      <img src="${imovel.imagem}" alt="${imovel.titulo}" style="width: 100%; border-radius: 8px;">
-      <h3>${imovel.titulo}</h3>
-      <p><strong>R$</strong> ${imovel.preco}</p>
-      <small>${imovel.tipo}</small>
+  lista.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${item.imagem}" alt="Imagem do imóvel">
+      <h3>${item.titulo}</h3>
+      <p>${item.descricao}</p>
+      <span class="tag">${item.tipo}</span>
     `;
-    container.appendChild(div);
+    container.appendChild(card);
   });
 }
 
-function adicionarImovel() {
-  const titulo = document.getElementById('titulo').value;
-  const imagem = document.getElementById('imagem').value;
-  const preco = document.getElementById('preco').value;
-  const tipo = document.getElementById('tipo').value;
-
-  if (!titulo || !imagem || !preco) {
-    alert("Preencha todos os campos.");
-    return;
+function filtrar(tipo) {
+  if (tipo === 'todos') {
+    renderizarImoveis(imoveis);
+  } else {
+    const filtrados = imoveis.filter(i => i.tipo === tipo);
+    renderizarImoveis(filtrados);
   }
-
-  novoImovel = { titulo, imagem, preco, tipo };
-  document.getElementById("modal-confirmacao").style.display = "flex";
 }
 
-function confirmarAdicao() {
-  imoveis.push(novoImovel);
-  filtrar('todos');
-  document.getElementById("modal-confirmacao").style.display = "none";
+function alternarTema() {
+  document.body.classList.toggle('dark');
 }
 
-function cancelarAdicao() {
-  novoImovel = null;
-  document.getElementById("modal-confirmacao").style.display = "none";
+// Formulário da página admin.html
+const form = document.getElementById('formulario');
+if (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const titulo = document.getElementById('titulo').value;
+    const descricao = document.getElementById('descricao').value;
+    const imagem = document.getElementById('imagem').value;
+    const tipo = document.getElementById('tipo').value;
+
+    imoveis.push({ titulo, descricao, imagem, tipo });
+    localStorage.setItem('imoveis', JSON.stringify(imoveis));
+    alert('Imóvel adicionado com sucesso!');
+    form.reset();
+  });
 }
+
+// Inicialização
+renderizarImoveis();
