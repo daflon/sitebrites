@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Imobiliário</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xh6Vn2iOyz3vMeCm+mrzB5rUj7UsKL7Eq8tc3h+7YlffEIb8SOG3bZ2Bz1AChIq5AYmhH1Qx6YPsZbLbYiuvug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
       --primary: #2b6cb0;
@@ -18,7 +20,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: var(--background);
       color: var(--text);
       padding: 20px;
@@ -42,11 +44,12 @@
       margin-right: 10px;
       padding: 10px 20px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .tabs button:hover {
       background-color: #2c5282;
+      transform: scale(1.05);
     }
 
     .grid {
@@ -58,9 +61,9 @@
     .card {
       background-color: var(--card);
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
     }
 
     .card:hover {
@@ -75,6 +78,16 @@
 
     .card-content {
       padding: 15px;
+    }
+
+    .card-content h2 {
+      font-size: 1.2rem;
+      margin: 0 0 10px;
+    }
+
+    .card-content p {
+      font-weight: bold;
+      color: var(--primary);
     }
 
     .inputs {
@@ -111,18 +124,18 @@
   </style>
 </head>
 <body>
-  <h1>Portal Imobiliário</h1>
+  <h1><i class="fa-solid fa-building"></i> Portal Imobiliário</h1>
 
   <div class="tabs">
-    <button onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('compra')">Comprar</button>
-    <button onclick="filtrar('aluguel')">Alugar</button>
+    <button onclick="filtrar('todos')"><i class="fa-solid fa-list"></i> Todos</button>
+    <button onclick="filtrar('compra')"><i class="fa-solid fa-house"></i> Comprar</button>
+    <button onclick="filtrar('aluguel')"><i class="fa-solid fa-key"></i> Alugar</button>
   </div>
 
   <div id="lista-imoveis" class="grid"></div>
 
   <div class="admin">
-    <h2>Painel de Administração</h2>
+    <h2><i class="fa-solid fa-pen-to-square"></i> Painel de Administração</h2>
     <div class="inputs">
       <input type="text" id="titulo" placeholder="Título do imóvel">
       <input type="text" id="imagem" placeholder="URL da imagem">
@@ -132,7 +145,7 @@
         <option value="aluguel">Aluguel</option>
       </select>
     </div>
-    <button onclick="adicionarImovel()">Adicionar Imóvel</button>
+    <button onclick="adicionarImovel()"><i class="fa-solid fa-plus"></i> Adicionar Imóvel</button>
   </div>
 
   <script>
