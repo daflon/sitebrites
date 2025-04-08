@@ -1,33 +1,29 @@
+// src/components/ui/select.tsx
 "use client";
+import * as React from "react";
 
-import { ChangeEvent, ReactNode } from "react";
-
-type SelectProps = {
+interface SelectProps {
   value: string;
   onValueChange: (value: string) => void;
-  children: ReactNode;
-};
+  children: React.ReactNode;
+}
 
 export function Select({ value, onValueChange, children }: SelectProps) {
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    onValueChange(e.target.value);
-  };
-
   return (
     <select
       value={value}
-      onChange={handleChange}
-      className="border border-gray-300 rounded-2xl px-3 py-2 w-full"
+      onChange={e => onValueChange(e.target.value)}
+      className="border rounded p-2"
     >
       {children}
     </select>
   );
 }
 
-type SelectItemProps = {
+interface SelectItemProps {
   value: string;
-  children: ReactNode;
-};
+  children: React.ReactNode;
+}
 
 export function SelectItem({ value, children }: SelectItemProps) {
   return <option value={value}>{children}</option>;
