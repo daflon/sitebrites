@@ -1,3 +1,16 @@
+"use client";
+
+export function Button({ children, ...props }) {
+  return (
+    <button
+      className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
